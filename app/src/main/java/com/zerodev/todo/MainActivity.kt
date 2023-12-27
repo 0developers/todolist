@@ -36,8 +36,7 @@ class MainActivity : AppCompatActivity() {
             val json = gson.toJson(tasks)
             editor.putString("tasks" , json)
             editor.apply()
+            binding.editTextTask.text.clear()
         }
-
-
-    }
+}
 }
