@@ -1,0 +1,37 @@
+<resources>
+    <string name="app_name">ToDo List</string>
+    <string name="title_activity_view_tasks">ViewTasksActivity</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_settings">Settings</string>
+    <string name="menu_home">Home</string>
+    <string name="menu_gallery">Gallery</string>
+    <string name="menu_slideshow">Slideshow</string>
+    <string name="settings">Settings</string>
+    <string name="about_us">About Us</string>
+    <string name="type_what_you_should_do">Type what you should do</string>
+    <string name="title">Title</string>
+    <string name="select_due_date">Select Due date</string>
+    <string name="description">Description</string>
+    <string name="repeat">Repeat</string>
+    <string name="set_reminder">Set Reminder</string>
+    <string name="by_zero_developer_s">By Zero Developer\'s</string>
+    <string name="app_crashed_note">An unexpected error occurred and the app crashed! \nPlease report the problem so we can fix it in the next update !</string>
+    <string name="report_the_problem">Report the problem</string>
+    <string name="restart_the_app">Restart the app</string>
+    <string name="download_list_from_cloud">Download List from Cloud</string>
+    <string name="upload_list_to_cloud">Upload List to cloud</string>
+    <string name="backup_tasks_locally">Backup tasks locally</string>
+    <string name="next">Next</string>
+    <!-- array for the spinner -->
+    <string-array name="repeatSpinnerItems">
+        <item>Don\'t Repeat</item>
+        <item>Daily</item>
+        <item>Weekly (every saturday)</item>
+        <item>Monthly (first day of month)</item>
+        <item>Yearly (first day of the year)</item>
+    </string-array>
+
+</resources>
