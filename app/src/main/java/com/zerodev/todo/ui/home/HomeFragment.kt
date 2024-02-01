@@ -167,10 +167,10 @@ class HomeFragment : Fragment() {
 
                 }
                 dialog.show()
-                val dialogAddHeight = context?.let { dpToPx(450, it) }
-                val dialogAddWidth = context?.let { dpToPx(400, it) }
-                if (dialogAddWidth != null && dialogAddHeight != null) {
-                    dialog.window?.setLayout(dialogAddWidth, dialogAddHeight)
+                val dialogHeight = context?.let { dpToPx(450, it) }
+                val dialogWidth = context?.let { dpToPx(400, it) }
+                if (dialogWidth != null && dialogHeight != null) {
+                    dialog.window?.setLayout(dialogWidth, dialogHeight)
                 }
 
             }

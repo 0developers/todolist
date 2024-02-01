@@ -1,36 +1,60 @@
 package com.zerodev.todo
 
-import android.Manifest
 import android.app.NotificationChannel
 import android.app.NotificationManager
 import android.app.PendingIntent
 import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
-import android.content.pm.PackageManager
 import android.graphics.Color
 import android.media.AudioAttributes
 import android.media.RingtoneManager
 import android.net.Uri
 import android.os.Build
-import androidx.core.app.ActivityCompat
+import android.util.Log
 import androidx.core.app.NotificationCompat
-import androidx.core.app.NotificationManagerCompat
+import com.zerodev.todo.Data.NotifSounds
+import java.util.UUID
 
 class NotificationReceiver : BroadcastReceiver() {
-    val CHANNEL_ID = "6"
+    private val CHANNEL_ID = UUID.randomUUID().toString()
     override fun onReceive(context: Context, intent: Intent) {
+        val settingsPref = context.getSharedPreferences("settings", Context.MODE_PRIVATE)
         val notificationId = intent.getIntExtra("notificationId", 0)
         val taskTitle = intent.getStringExtra("taskTitle")
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            val deleteIntent = Intent(context, NotifDissmiss::class.java)
+            deleteIntent.action = "notification_dismissed_action_$notificationId"
+            deleteIntent.putExtra("notificationId", notificationId)
+            val deletePendingIntent = PendingIntent.getBroadcast(
+                context,
+                notificationId,
+                deleteIntent,
+                PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE
+            )
+            var notifImportance= NotificationManager.IMPORTANCE_NONE
+            when (settingsPref.getInt("notifImportance" , 0)) {
+            0 -> notifImportance = NotificationManager.IMPORTANCE_NONE
+                1 -> notifImportance = NotificationManager.IMPORTANCE_MIN
+                2 -> notifImportance = NotificationManager.IMPORTANCE_LOW
+                3 -> notifImportance = NotificationManager.IMPORTANCE_DEFAULT
+                4 -> notifImportance = NotificationManager.IMPORTANCE_HIGH
+            }
+            Log.d("notif" , "Notif importance is ==> $notifImportance")
             val notificationChannel = NotificationChannel(
                     CHANNEL_ID,
                 "todo",
-                NotificationManager.IMPORTANCE_HIGH
+                notifImportance
             )
-            //val notificationSoundUri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION)
-            val notificationSoundUri = Uri.parse("android.resource://${context.packageName}/${R.raw.android_tada}")
+            var notificationSoundUri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION)
+            if (settingsPref.contains("notifSound") && settingsPref.getInt("notifSound" , 0) != 0) {
+                // get the sound path
+                val notifSound = NotifSounds(context)
+                val soundPath = notifSound.soundArray[settingsPref.getInt("notifSound" , 0)].path
+                notificationSoundUri = Uri.parse(soundPath)
+                Log.d("notif" , "Custom sound path set ==> $soundPath ")
+            }
             val audioAttributes = AudioAttributes.Builder()
                 .setContentType(AudioAttributes.CONTENT_TYPE_SONIFICATION)
                 .setUsage(AudioAttributes.USAGE_NOTIFICATION)
@@ -62,9 +86,9 @@ class NotificationReceiver : BroadcastReceiver() {
                 .setContentText(messageBody)
                 .setContentIntent(contentPendingIntent)
                 .setAutoCancel(true)
+                .setDeleteIntent(deletePendingIntent)
 
             notificationManager.notify(notificationId, builder.build())
-            notificationManager.cancel(notificationId)
         }
     }
 }
