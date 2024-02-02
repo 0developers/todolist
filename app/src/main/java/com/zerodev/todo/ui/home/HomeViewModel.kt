@@ -6,20 +6,17 @@ import android.content.Context
 import android.content.Intent
 import android.os.Build
 import android.util.Log
-import android.widget.EditText
 import android.widget.Toast
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.google.android.material.snackbar.Snackbar
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
-import com.zerodev.todo.NotificationReceiver
+import com.zerodev.todo.Notifications.NotificationReceiver
 import com.zerodev.todo.Task
 import com.zerodev.todo.TaskAdapter
-import java.sql.Timestamp
 
 class HomeViewModel : ViewModel() {
 

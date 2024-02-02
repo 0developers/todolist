@@ -1,5 +1,6 @@
 package com.zerodev.todo.ui.aboutus
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
@@ -21,6 +22,7 @@ class AboutUsFragment : Fragment() {
     // onDestroyView.
     private val binding get() = _binding!!
 
+    @SuppressLint("SetTextI18n")
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -34,7 +36,7 @@ class AboutUsFragment : Fragment() {
         binding.appver.text = "App Version : ${context?.let { getAPPVersion(it) }}"
         //on clicks for social media channels 🤑🤑
         //telegram
-        binding.telegrambtn.setOnClickListener{
+        binding.telegram.setOnClickListener{
             val telUrl = "https://t.me/zero_developers"
             val intent = Intent(Intent.ACTION_VIEW, Uri.parse(telUrl))
             intent.setPackage("org.telegram.messenger")
@@ -45,10 +47,10 @@ class AboutUsFragment : Fragment() {
             }
         }
         // instagram
-        binding.instagrambtn.setOnClickListener{
+        binding.instagram.setOnClickListener{
             //TODO: add the code here
         }
-        binding.discordbtn.setOnClickListener{
+        binding.discord.setOnClickListener{
             val disUrl = "https://discord.gg/FQxG3pmEB7"
             val intent = Intent(Intent.ACTION_VIEW, Uri.parse(disUrl))
             intent.setPackage("com.discord")

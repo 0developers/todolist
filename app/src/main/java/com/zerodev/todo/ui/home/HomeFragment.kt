@@ -1,12 +1,10 @@
 package com.zerodev.todo.ui.home
 
-import android.app.AlertDialog
 import android.app.DatePickerDialog
 import android.app.Dialog
 import android.app.TimePickerDialog
 import android.content.Context
 import android.os.Bundle
-import android.os.Vibrator
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -16,16 +14,13 @@ import android.widget.Button
 import android.widget.CheckBox
 import android.widget.EditText
 import android.widget.Spinner
-import androidx.core.content.ContextCompat.getSystemService
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.google.android.material.snackbar.Snackbar
 import com.zerodev.todo.R
-import com.zerodev.todo.ReportBug
 import com.zerodev.todo.databinding.FragmentHomeBinding
 import java.text.SimpleDateFormat
 import java.util.Calendar
-import java.util.GregorianCalendar
 import java.util.Locale
 
 

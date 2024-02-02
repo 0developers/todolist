@@ -9,28 +9,31 @@
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:padding="10dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:padding="10dp"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical" >
+            android:orientation="vertical">
+
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_margin="5dp"
                 android:text="Backup"
-                android:textSize="18sp"
                 android:textColor="@color/black"
-                android:layout_margin="5dp"/>
+                android:textSize="18sp" />
+
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
-                android:padding="10dp"
                 android:layout_margin="5dp"
-                android:background="@drawable/settings_items_back">
+                android:background="@drawable/settings_items_back"
+                android:padding="10dp">
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -45,12 +48,13 @@
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintVertical_bias="0.516" />
             </androidx.constraintlayout.widget.ConstraintLayout>
+
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
-                android:padding="10dp"
                 android:layout_margin="5dp"
-                android:background="@drawable/settings_items_back">
+                android:background="@drawable/settings_items_back"
+                android:padding="10dp">
 
                 <TextView
                     android:id="@+id/textView6"
@@ -66,22 +70,25 @@
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintVertical_bias="0.516" />
             </androidx.constraintlayout.widget.ConstraintLayout>
+
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_margin="5dp"
                 android:text="Reminder Notification"
-                android:textSize="18sp"
                 android:textColor="@color/black"
-                android:layout_margin="5dp"/>
+                android:textSize="18sp" />
+
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/notifSound"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:layout_margin="5dp"
-                android:padding="10dp"
-                android:background="@drawable/settings_items_back">
+                android:background="@drawable/settings_items_back"
+                android:padding="10dp">
 
                 <TextView
+                    android:id="@+id/textView5"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Notification sound"
@@ -96,26 +103,30 @@
 
                 <TextView
                     android:id="@+id/notifSoundtxt"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
+                    android:gravity="right"
+                    android:singleLine="true"
                     android:text="Sound"
                     android:textColor="#FF9800"
-                    android:textSize="18dp"
+                    android:textSize="18sp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.787"
-                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintHorizontal_bias="0.521"
+                    app:layout_constraintStart_toEndOf="@+id/textView5"
                     app:layout_constraintTop_toTopOf="parent" />
             </androidx.constraintlayout.widget.ConstraintLayout>
+
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/notifImportance"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:layout_margin="5dp"
-                android:padding="10dp"
-                android:background="@drawable/settings_items_back">
+                android:background="@drawable/settings_items_back"
+                android:padding="10dp">
 
                 <TextView
+                    android:id="@+id/textView7"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Notification Importance"
@@ -130,15 +141,17 @@
 
                 <TextView
                     android:id="@+id/notifImportancetxt"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
+                    android:gravity="right"
+                    android:singleLine="true"
                     android:text="High"
-                    android:textColor="#FF1300"
-                    android:textSize="18dp"
+                    android:textColor="#F44336"
+                    android:textSize="18sp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.787"
-                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintHorizontal_bias="0.521"
+                    app:layout_constraintStart_toEndOf="@+id/textView7"
                     app:layout_constraintTop_toTopOf="parent" />
             </androidx.constraintlayout.widget.ConstraintLayout>
         </LinearLayout>

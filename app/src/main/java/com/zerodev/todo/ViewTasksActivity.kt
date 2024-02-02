@@ -1,24 +1,13 @@
 package com.zerodev.todo
 
-import android.app.Application
-import android.app.Dialog
 import android.content.Context
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
-import android.os.Looper
 import android.os.PowerManager
 import android.provider.Settings
-import android.util.Log
-import android.view.LayoutInflater
 import android.view.Menu
-import android.view.ViewGroup
-import android.view.Window
-import android.widget.Button
-import android.widget.EditText
-import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
-import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.navigation.NavigationView
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
@@ -27,8 +16,8 @@ import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.appcompat.app.AppCompatActivity
+import com.zerodev.todo.BugReport.ReportBug
 import com.zerodev.todo.databinding.ActivityViewTasksBinding
-import kotlinx.coroutines.handleCoroutineException
 import kotlin.system.exitProcess
 
 class ViewTasksActivity : AppCompatActivity() {

@@ -6,6 +6,10 @@ import android.content.Context
 import android.graphics.Color
 import android.graphics.Paint
 import android.opengl.Visibility
+import android.text.Spannable
+import android.text.SpannableString
+import android.text.SpannableStringBuilder
+import android.text.style.ForegroundColorSpan
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -37,10 +41,13 @@ class TaskAdapter(private var tasks: MutableList<Task> , private val context: Co
         return TaskViewHolder(view)
     }
 
-    @SuppressLint("SimpleDateFormat")
+    @SuppressLint("SimpleDateFormat", "SetTextI18n")
     override fun onBindViewHolder(holder: TaskViewHolder, position: Int) {
         val task = tasks[position]
-        holder.textViewTitle.text = task.title
+        // apply colors to text view
+        val applyColor = ApplyColorTextView()
+        applyColor.applyColorToTextView(task.title , holder.textViewTitle)
+        // check the checkbox if task is completed ...
         holder.checkBoxCompleted.isChecked = task.completed
         if (task.completed) {
             holder.textViewTitle.paintFlags =
@@ -48,6 +55,7 @@ class TaskAdapter(private var tasks: MutableList<Task> , private val context: Co
             holder.textViewFinished.visibility = View.VISIBLE
             val date = Date(task.completedDate)
             var sdf = SimpleDateFormat("MM-dd HH:mm")
+            // if the task was done in the same day , just show the hour and minutes
             if (isToday(task.completedDate))
                 sdf = SimpleDateFormat("HH:mm")
 
@@ -57,12 +65,15 @@ class TaskAdapter(private var tasks: MutableList<Task> , private val context: Co
             holder.textViewTitle.paintFlags = holder.textViewTitle.paintFlags and Paint.STRIKE_THRU_TEXT_FLAG.inv()
             holder.textViewFinished.visibility = View.GONE
         }
+        // if checkbox clicked , save the status
         holder.checkBoxCompleted.setOnClickListener {
             task.completed = holder.checkBoxCompleted.isChecked
             task.completedDate = System.currentTimeMillis()
             refreshSharedPref()
             notifyItemChanged(position)
         }
+        // more details
+        //TODO : Add a edit dialog in the next update
         holder.moreimg.setOnClickListener {
                     val popupMenu = PopupMenu(context, holder.moreimg)
                     popupMenu.menuInflater.inflate(R.menu.menu_recycler, popupMenu.menu)
@@ -152,4 +163,7 @@ class TaskAdapter(private var tasks: MutableList<Task> , private val context: Co
 
         return finisehdDate == today
     }
+
+
+
 }

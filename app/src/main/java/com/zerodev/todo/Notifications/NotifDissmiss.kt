@@ -1,4 +1,4 @@
-package com.zerodev.todo
+package com.zerodev.todo.Notifications
 
 import android.content.BroadcastReceiver
 import android.content.Context

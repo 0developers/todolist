@@ -1,4 +1,4 @@
-package com.zerodev.todo
+package com.zerodev.todo.BugReport
 import okhttp3.ResponseBody
 import retrofit2.Call
 import retrofit2.http.Body

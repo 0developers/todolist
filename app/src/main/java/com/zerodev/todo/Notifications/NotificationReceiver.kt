@@ -1,4 +1,4 @@
-package com.zerodev.todo
+package com.zerodev.todo.Notifications
 
 import android.app.NotificationChannel
 import android.app.NotificationManager
@@ -14,6 +14,8 @@ import android.os.Build
 import android.util.Log
 import androidx.core.app.NotificationCompat
 import com.zerodev.todo.Data.NotifSounds
+import com.zerodev.todo.MainActivity
+import com.zerodev.todo.R
 import java.util.UUID
 
 class NotificationReceiver : BroadcastReceiver() {

@@ -36,7 +36,7 @@
             </intent-filter>
         </activity>
 
-        <receiver android:name=".NotificationReceiver" />
+        <receiver android:name=".Notifications.NotificationReceiver" />
     </application>
 
 </manifest>

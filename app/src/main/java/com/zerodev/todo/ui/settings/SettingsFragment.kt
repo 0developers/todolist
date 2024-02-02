@@ -10,28 +10,17 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Switch
-import android.widget.Toast
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.google.android.material.snackbar.Snackbar
 import com.zerodev.todo.Data.NotifSounds
-import com.zerodev.todo.R
 import com.zerodev.todo.databinding.FragmentSettingsBinding
 
 class SettingsFragment : Fragment() {
 
     private var _binding: FragmentSettingsBinding? = null
     private val binding get() = _binding!!
-
-    val soundArray = arrayOf(
-        NotifSounds("Default Notification Sound", "def"),
-        NotifSounds("Goofy auhh sound (Tada)", "android.resource://${context?.packageName}/${R.raw.android_tada}"),
-        NotifSounds("Ohio Alarm Sound" , "android.resource://${context?.packageName}/${R.raw.ohio_alarm}") ,
-        NotifSounds("This is your Reminder" , "android.resource://${context?.packageName}/${R.raw.reminder_finish_task}") ,
-        NotifSounds("Reminder beep" , "android.resource://${context?.packageName}/${R.raw.reminders}")
-    )
+    var notifSounds = context?.let { NotifSounds(it) }
     val notifImportance = arrayOf(
         "None",
         "Min",
@@ -56,7 +45,7 @@ class SettingsFragment : Fragment() {
         }
         // set the sound title to the text view
         if (settingsPref != null) {
-            binding.notifSoundtxt.text = " ${soundArray[settingsPref.getInt("notifSound" , 0)].title}"
+            binding.notifSoundtxt.text = " ${notifSounds?.soundArray?.get(settingsPref.getInt("notifSound" , 0))?.title}"
         }
         // set the notif importance to textview
         if (settingsPref != null) {
@@ -67,20 +56,20 @@ class SettingsFragment : Fragment() {
         // notif sound click listener
         binding.notifSound.setOnClickListener {
             //set notification sound
-            val soundTitles = soundArray.map { it.title }.toTypedArray()
+            val soundTitles = notifSounds?.soundArray?.map { it.title }?.toTypedArray()
             val builder = AlertDialog.Builder(context)
             .setTitle("Choose a Sound")
                 .setItems(soundTitles) { _, index ->
-                    val selectedSound = soundArray[index]
+                    val selectedSound = notifSounds?.soundArray?.get(index)
                     // Handle the item click
                     settingsPref?.edit()?.putInt("notifSound" , index)
                         ?.apply()
                     if (settingsPref != null) {
-                        binding.notifSoundtxt.text = " ${soundArray[settingsPref.getInt("notifSound" , 0)].title}"
+                        binding.notifSoundtxt.text = " ${notifSounds?.soundArray?.get(settingsPref.getInt("notifSound" , 0))?.title}"
                     }
                     val snackbar = view?.let { it1 ->
                         Snackbar.make(it1,
-                            "Selected ${selectedSound.title} ",
+                            "Selected ${selectedSound?.title} ",
                             Snackbar.LENGTH_SHORT
                         )
                     }

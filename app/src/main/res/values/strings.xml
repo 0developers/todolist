@@ -25,6 +25,7 @@
     <string name="upload_list_to_cloud">Upload List to cloud</string>
     <string name="backup_tasks_locally">Backup tasks locally</string>
     <string name="next">Next</string>
+    <string name="about_note"><![CDATA[This App is About doing your tasks on time ! \nYou can add your Daily tasks & Set a Reminder to make sure you don\'t forget anything!]]></string>
     <!-- array for the spinner -->
     <string-array name="repeatSpinnerItems">
         <item>Don\'t Repeat</item>
