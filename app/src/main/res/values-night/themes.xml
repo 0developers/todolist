@@ -9,4 +9,7 @@
         <item name="colorSecondaryVariant">@color/teal_700</item>
         <item name="colorOnSecondary">@color/white</item>
     </style>
+    <style name="BottomNav" parent="Theme.MaterialComponents">
+        <item name="colorPrimary">#14B9AA</item>
+    </style>
 </resources>

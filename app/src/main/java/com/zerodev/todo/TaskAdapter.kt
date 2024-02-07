@@ -99,7 +99,7 @@ class TaskAdapter(private var tasks: MutableList<Task> , private val context: Co
 """.trimIndent()
 
                                 val detailDialog = AlertDialog.Builder(context)
-                                    .setTitle(task.title)
+                                    .setTitle(applyColor.parseAndApplyColor(task.title))
                                     .setMessage(message)
                                     .setPositiveButton("ok" , null)
 

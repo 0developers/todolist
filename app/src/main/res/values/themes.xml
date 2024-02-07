@@ -20,5 +20,8 @@
 
     <style name="Theme.ToDoList.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
 
-    <style name="Theme.ToDoList.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+    <style name="Theme.ToDoList.PopupOverlay" parent="ThemeOverlay.AppCompat.Dark" />
+    <style name="BottomNav" parent="Theme.MaterialComponents.Light">
+        <item name="colorPrimary">#14B9AA</item>
+    </style>
 </resources>

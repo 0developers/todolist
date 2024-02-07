@@ -15,7 +15,7 @@ class ApplyColorTextView {
             textView.text = textWithColor
         }
     }
-    private fun parseAndApplyColor(inputText: String): SpannableStringBuilder {
+     fun parseAndApplyColor(inputText: String): SpannableStringBuilder {
         val spannableStringBuilder = SpannableStringBuilder(inputText)
 
         val regex = "\\[color:(#[0-9A-Fa-f]{6})](.*?)\\[/color]".toRegex()

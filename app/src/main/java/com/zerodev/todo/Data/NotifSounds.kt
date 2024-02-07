@@ -1,7 +1,6 @@
 package com.zerodev.todo.Data
 
 import android.content.Context
-import com.zerodev.todo.Notifications.NotifSoundData
 import com.zerodev.todo.R
 
 class NotifSounds (context : Context) {

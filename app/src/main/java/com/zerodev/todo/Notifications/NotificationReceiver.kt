@@ -13,6 +13,7 @@ import android.net.Uri
 import android.os.Build
 import android.util.Log
 import androidx.core.app.NotificationCompat
+import com.zerodev.todo.ApplyColorTextView
 import com.zerodev.todo.Data.NotifSounds
 import com.zerodev.todo.MainActivity
 import com.zerodev.todo.R
@@ -69,8 +70,14 @@ class NotificationReceiver : BroadcastReceiver() {
             val notificationManager = context.getSystemService(
                 NotificationManager::class.java
             )
+            // apply spannable
+            var textColor = ApplyColorTextView()
             notificationManager.createNotificationChannel(notificationChannel)
-            val messageBody = "You got a task to do : $taskTitle"
+            val messageBody = "You Got a task to do : ${taskTitle?.let {
+                textColor.parseAndApplyColor(
+                    it
+                )
+            }}"
             val contentIntent = Intent(context, MainActivity::class.java)
             val contentPendingIntent = PendingIntent.getActivity(
                 context,

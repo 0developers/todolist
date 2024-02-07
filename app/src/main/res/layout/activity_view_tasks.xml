@@ -22,6 +22,7 @@
         android:fitsSystemWindows="true"
         app:headerLayout="@layout/nav_header_view_tasks"
         app:menu="@menu/activity_main_drawer"
-        app:itemIconTint="#14B9AA" />
+        app:itemIconTint="#14B9AA"
+        android:theme="@style/BottomNav" />
 
 </androidx.drawerlayout.widget.DrawerLayout>

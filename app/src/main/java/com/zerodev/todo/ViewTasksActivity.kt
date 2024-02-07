@@ -3,6 +3,7 @@ package com.zerodev.todo
 import android.content.Context
 import android.content.Intent
 import android.net.Uri
+import android.os.Build
 import android.os.Bundle
 import android.os.PowerManager
 import android.provider.Settings
@@ -83,6 +84,16 @@ class ViewTasksActivity : AppCompatActivity() {
             }
         }
 
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.O) {
+            val builder = AlertDialog.Builder(this)
+            builder.setTitle("Warning")
+            builder.setMessage("The Remind Feature Won't work on this android version , we recommend you to use android 8+ for better experience")
+            builder.setPositiveButton("Ignore") { _, _ ->
+
+            }
+            builder.show()
+        }
+
         val drawerLayout: DrawerLayout = binding.drawerLayout
         val navView: NavigationView = binding.navView
         val navController = findNavController(R.id.nav_host_fragment_content_view_tasks)
@@ -97,11 +108,15 @@ class ViewTasksActivity : AppCompatActivity() {
         navView.setupWithNavController(navController)
     }
 
+    /*
+    Todo: Need to work on this one
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         // Inflate the menu; this adds items to the action bar if it is present.
         menuInflater.inflate(R.menu.view_tasks, menu)
         return true
     }
+
+     */
 
     override fun onSupportNavigateUp(): Boolean {
         val navController = findNavController(R.id.nav_host_fragment_content_view_tasks)
