@@ -16,7 +16,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.48"
-        app:srcCompat="@drawable/side_nav_bar" />
+        app:srcCompat="@drawable/ic_launcher_foreground" />
 
     <TextView
         android:layout_width="wrap_content"

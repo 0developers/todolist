@@ -6,10 +6,10 @@ import android.content.Context
 import android.os.Build
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
+import okhttp3.ResponseBody
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import okhttp3.ResponseBody
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
@@ -29,8 +29,8 @@ class ReportBug {
         val service = retrofit.create(DiscordApi::class.java)
         val webhookdata = WebhookData(message)
             service.sendMessage(
-                "1191698044211703950",
-                "ZZ_6hKT0xB2MtR6gyLIJPi6razz9PjmOpWMi2UlY0Op_JHbvM1nrhxDJ9HkmN6J_7IhC",
+                "webhook ID",
+                "Webhook token",
                 webhookdata
             ).enqueue(object : Callback<ResponseBody> {
                 override fun onResponse(

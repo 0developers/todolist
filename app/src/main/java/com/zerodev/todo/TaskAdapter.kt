@@ -3,13 +3,10 @@ package com.zerodev.todo
 import android.annotation.SuppressLint
 import android.app.AlertDialog
 import android.content.Context
+import android.content.res.Configuration
 import android.graphics.Color
 import android.graphics.Paint
-import android.opengl.Visibility
-import android.text.Spannable
-import android.text.SpannableString
-import android.text.SpannableStringBuilder
-import android.text.style.ForegroundColorSpan
+import android.graphics.PorterDuff
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -17,11 +14,9 @@ import android.widget.CheckBox
 import android.widget.ImageView
 import android.widget.PopupMenu
 import android.widget.TextView
-import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.google.gson.Gson
 import java.text.SimpleDateFormat
-import java.time.Instant
 import java.util.Date
 
 
@@ -72,6 +67,10 @@ class TaskAdapter(private var tasks: MutableList<Task> , private val context: Co
             refreshSharedPref()
             notifyItemChanged(position)
         }
+        if (isDarkMode(context))
+            holder.moreimg.setColorFilter(Color.WHITE , PorterDuff.Mode.MULTIPLY)
+        else
+            holder.moreimg.setColorFilter(Color.BLACK , PorterDuff.Mode.MULTIPLY)
         // more details
         //TODO : Add a edit dialog in the next update
         holder.moreimg.setOnClickListener {
@@ -162,6 +161,10 @@ class TaskAdapter(private var tasks: MutableList<Task> , private val context: Co
         val today = sdf.format(dateToday)
 
         return finisehdDate == today
+    }
+    fun isDarkMode(context: Context): Boolean {
+        val darkModeFlag = context.resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK
+        return darkModeFlag == Configuration.UI_MODE_NIGHT_YES
     }
 
 

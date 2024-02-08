@@ -9,7 +9,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.zerodev.todo.databinding.FragmentAboutusBinding
@@ -47,8 +46,17 @@ class AboutUsFragment : Fragment() {
             }
         }
         // instagram
+        // for now i remove the instagram
+        binding.instagram.visibility = View.GONE
         binding.instagram.setOnClickListener{
-            //TODO: add the code here
+            val insUrl = ""
+            val intent = Intent(Intent.ACTION_VIEW, Uri.parse(insUrl))
+            intent.setPackage("com.discord")
+            if (context?.let { isIntentAvailable(it, intent) } == true) {
+                startActivity(intent)
+            } else {
+                startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(insUrl)))
+            }
         }
         binding.discord.setOnClickListener{
             val disUrl = "https://discord.gg/FQxG3pmEB7"
@@ -59,6 +67,19 @@ class AboutUsFragment : Fragment() {
             } else {
                 startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(disUrl)))
             }
+        }
+        binding.tiktok.setOnClickListener {
+            val Url = "https://www.tiktok.com/@grandffyt?_t=8jiaWme2IUo&_r=1"
+            val intent = Intent(Intent.ACTION_VIEW, Uri.parse(Url))
+            intent.setPackage("com.zhiliaoapp.musically")
+            if (context?.let { isIntentAvailable(it, intent) } == true) {
+                startActivity(intent)
+            } else {
+                startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(Url)))
+            }
+        }
+        binding.github.setOnClickListener {
+            startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("https://www.tiktok.com/@grandffyt?_t=8jiaWme2IUo&_r=1")))
         }
 
         return root

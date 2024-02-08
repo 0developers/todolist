@@ -43,13 +43,18 @@ class HomeFragment : Fragment() {
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
 
         binding.fab.setOnClickListener { view ->
-            val dialogView = LayoutInflater.from(context).inflate(R.layout.new_item_dialog, null)
+            val dialogView = LayoutInflater.from(context).inflate(R.layout.new_item_dialog , null)
+
             val taskEditText = dialogView.findViewById<EditText>(R.id.taskEditText)
             val desc = dialogView.findViewById<EditText>(R.id.desc)
             val cancelButton = dialogView.findViewById<Button>(R.id.cancelButton)
             val addButton = dialogView.findViewById<Button>(R.id.addButton)
             val pickDueDate = dialogView.findViewById<Button>(R.id.pickDueDate)
+            // we remove this for now since it dosen't work
+            pickDueDate.visibility = View.GONE
             val repeatSpinner = dialogView.findViewById<Spinner>(R.id.spinner)
+            // we remove this for now since it dosen't work
+            repeatSpinner.visibility = View.GONE
             val reminderCheckBox = dialogView.findViewById<CheckBox>(R.id.reminderCheckbox)
             val calendar = Calendar.getInstance()
             val year = calendar.get(Calendar.YEAR)
@@ -161,12 +166,12 @@ class HomeFragment : Fragment() {
                     }
 
                 }
-                dialog.show()
                 val dialogHeight = context?.let { dpToPx(450, it) }
                 val dialogWidth = context?.let { dpToPx(400, it) }
                 if (dialogWidth != null && dialogHeight != null) {
                     dialog.window?.setLayout(dialogWidth, dialogHeight)
                 }
+                dialog.show()
 
             }
 

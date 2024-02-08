@@ -4,28 +4,18 @@ import android.annotation.SuppressLint
 import android.app.AlertDialog
 import android.content.Context
 import android.content.DialogInterface
-import android.content.Intent
 import android.content.SharedPreferences
 import android.graphics.Color
 import android.os.Bundle
-import android.os.Environment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
-import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.anggrayudi.storage.SimpleStorageHelper
 import com.google.android.material.snackbar.Snackbar
-import com.google.firebase.FirebaseApp
-import com.google.firebase.auth.FirebaseAuth
 import com.zerodev.todo.Data.NotifSounds
 import com.zerodev.todo.databinding.FragmentSettingsBinding
-import com.zerodev.todo.signupActivity
-import java.io.File
-import java.io.FileOutputStream
-import java.io.IOException
 
 class SettingsFragment : Fragment() {
 
@@ -54,8 +44,6 @@ class SettingsFragment : Fragment() {
         val settingsPref = context?.getSharedPreferences("settings", Context.MODE_PRIVATE)
         val notifSounds = context?.let { NotifSounds(it) }
         val notifSoundArray = notifSounds?.soundArray
-        val intent = Intent(this.requireContext(), signupActivity::class.java)
-        startActivity(intent)
         if (settingsPref != null) {
             settingsViewModel.setSharedPref(settingsPref)
         }
@@ -70,8 +58,6 @@ class SettingsFragment : Fragment() {
             binding.notifImportancetxt.text =
                 " ${notifImportance[settingsPref.getInt("notifImportance", 0)]}"
         }
-        // backup list click
-
 
         // notif sound click listener
         binding.notifSound.setOnClickListener {
@@ -147,10 +133,6 @@ class SettingsFragment : Fragment() {
             4 -> binding.notifImportancetxt.setTextColor(Color.RED)
         }
     }
-
-
-
-
 
 
     override fun onDestroyView() {
