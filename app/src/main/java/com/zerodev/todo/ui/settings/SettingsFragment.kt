@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import android.app.AlertDialog
 import android.content.Context
 import android.content.DialogInterface
+import android.content.Intent
 import android.content.SharedPreferences
 import android.graphics.Color
 import android.os.Bundle
@@ -17,8 +18,11 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.anggrayudi.storage.SimpleStorageHelper
 import com.google.android.material.snackbar.Snackbar
+import com.google.firebase.FirebaseApp
+import com.google.firebase.auth.FirebaseAuth
 import com.zerodev.todo.Data.NotifSounds
 import com.zerodev.todo.databinding.FragmentSettingsBinding
+import com.zerodev.todo.signupActivity
 import java.io.File
 import java.io.FileOutputStream
 import java.io.IOException
@@ -50,6 +54,8 @@ class SettingsFragment : Fragment() {
         val settingsPref = context?.getSharedPreferences("settings", Context.MODE_PRIVATE)
         val notifSounds = context?.let { NotifSounds(it) }
         val notifSoundArray = notifSounds?.soundArray
+        val intent = Intent(this.requireContext(), signupActivity::class.java)
+        startActivity(intent)
         if (settingsPref != null) {
             settingsViewModel.setSharedPref(settingsPref)
         }
@@ -65,26 +71,7 @@ class SettingsFragment : Fragment() {
                 " ${notifImportance[settingsPref.getInt("notifImportance", 0)]}"
         }
         // backup list click
-        binding.backuplist.setOnClickListener {
-            /*
-            if (ContextCompat.checkSelfPermission(
-                    requireContext(),
-                    Manifest.permission.WRITE_EXTERNAL_STORAGE
-                ) != PackageManager.PERMISSION_GRANTED
-            ) {
-                ActivityCompat.requestPermissions(
-                    requireActivity(),
-                    arrayOf(Manifest.permission.WRITE_EXTERNAL_STORAGE),
-                    WRITE_EXTERNAL_STORAGE_REQUEST_CODE
-                )
-            } else {
-                saveToFile("it worked")
-            }
 
-             */
-
-
-        }
 
         // notif sound click listener
         binding.notifSound.setOnClickListener {
@@ -126,7 +113,7 @@ class SettingsFragment : Fragment() {
                         notifImportance,
                         settingsPref.getInt("notifImportance", 0)
                     ) { dialog, index ->
-                        settingsPref?.edit()?.putInt("notifImportance", index)
+                        settingsPref.edit()?.putInt("notifImportance", index)
                             ?.apply()
                         val snackbar = view?.let { it1 ->
                             Snackbar.make(
@@ -161,44 +148,9 @@ class SettingsFragment : Fragment() {
         }
     }
 
-    private fun saveToFile(text: String) {
-        val directoryPath =
-            Environment.getExternalStorageDirectory().absolutePath + "/TodoList/Backup"
-        val fileName = "Backup.json"
 
-        val directory = File(directoryPath)
 
-        if (!directory.exists()) {
-            directory.mkdirs() // Create the directory if it doesn't exist
-        }
 
-        val file = File(directory, fileName)
-
-        try {
-            file.createNewFile()
-
-            val fileOutputStream = FileOutputStream(file)
-            fileOutputStream.write(text.toByteArray())
-            fileOutputStream.close()
-
-            // File saved successfully
-            Toast.makeText(requireContext(), "File saved successfully", Toast.LENGTH_SHORT).show()
-        } catch (e: IOException) {
-            e.printStackTrace()
-            // Handle the exception
-            Toast.makeText(requireContext(), "Error saving file", Toast.LENGTH_SHORT).show()
-        }
-    }
-
-    private fun checkPermission(): Boolean {
-        var permissionGranted = false
-        registerForActivityResult(
-            ActivityResultContracts.RequestPermission()
-        ) { isGranted: Boolean ->
-            permissionGranted = isGranted
-        }
-        return permissionGranted
-    }
 
 
     override fun onDestroyView() {
