@@ -1,5 +1,14 @@
-## This Project is not completed yet !
-we will write the readme once it got ready !
+## Todo List App
+Stay organized with our Todo List App, a sleek and intuitive tool designed to help you manage your tasks efficiently. 
+With a clean interface and powerful features, you can easily add your tasks. 
+The reminder feature ensures you never miss an important deadline, keeping you on track with your daily goals. 
+Whether it's personal projects or professional commitments, our Todo List App is your reliable companion for productivity.
+
+## Features
+* Add & Remove tasks
+* Notification Reminder
+* Amazing UI
+and more
 
 ## our channels 
 
